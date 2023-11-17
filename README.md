@@ -1,2 +1,2 @@
 # Signature-Verification
-Here we have uploaded cleaned dataset to downlaod for refrence. 
+Here you can find code for data cleaning 
