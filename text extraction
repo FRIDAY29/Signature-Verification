@@ -1,0 +1,64 @@
+#text extraction
+from google.colab import drive
+drive.mount('/content/drive')
+pip install pytesseract
+pip install Pillow
+import zipfile
+
+# Path to the ZIP file
+zip_file_path = '/content/drive/MyDrive/Clean-Data-Resized-224x224-signature-verification.zip'
+
+# Open the ZIP file and list its contents
+with zipfile.ZipFile(zip_file_path, 'r') as zip_ref:
+    zip_file_list = zip_ref.namelist()
+    print("Contents of the ZIP file:")
+    print(zip_file_list)
+
+from PIL import Image
+import pytesseract
+import os
+
+# Path to Tesseract executable (change this if necessary)
+pytesseract.pytesseract.tesseract_cmd = r'C:\Program Files\Tesseract-OCR\tesseract.exe'
+
+def extract_text_from_image(image):
+    # Use Tesseract OCR to extract text
+    extracted_text = pytesseract.image_to_string(image)
+
+    return extracted_text
+import os
+
+images_directory = '/content/drive/MyDrive/Clean-Data-Resized-224x224-signature-verification'
+
+if os.path.exists(images_directory):
+    print("Directory exists. Contents:")
+    print(os.listdir(images_directory))
+else:
+    print("Directory does not exist or the path is incorrect.")
+from PIL import Image
+import pytesseract
+import os
+
+# Path to Tesseract executable (change this if necessary)
+pytesseract.pytesseract.tesseract_cmd = r'C:\Program Files\Tesseract-OCR\tesseract.exe'
+
+def extract_text_from_image(image):
+    # Use Tesseract OCR to extract text
+    extracted_text = pytesseract.image_to_string(image)
+
+    return extracted_text
+
+# Path to the directory containing the unzipped images
+images_directory = '/content/drive/MyDrive/Clean-Data-Resized-224x224-signature-verification'
+
+# Process each image file in the directory
+for filename in os.listdir(images_directory):
+    if filename.endswith('.jpg') or filename.endswith('.png'):
+        image_path = os.path.join(images_directory, filename)
+        img = Image.open(image_path)
+        
+        # Perform text extraction
+        extracted_text = extract_text_from_image(img)
+        
+        print(f"Extracted Text from {filename}:")
+        print(extracted_text)
